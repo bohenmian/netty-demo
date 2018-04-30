@@ -1,5 +1,16 @@
 package cn.edu.swpu.cins.nettydemo.chapter2;
 
+/**
+ * @see io.netty.bootstrap.AbstractBootstrap#channel(java.lang.Class)  channel的初始化
+ * @see io.netty.channel.ReflectiveChannelFactory#newChannel()     channel实例化的具体实现(通过反射实例化channel)
+ * channel初始化AbstractBootstrap#channel -> ReflectiveChannelFactory#newChannel() -> channelFactory
+ * @see io.netty.bootstrap.Bootstrap#connect(java.net.SocketAddress) 调用connect方法
+ * @see io.netty.bootstrap.Bootstrap#doResolveAndConnect(java.net.SocketAddress, java.net.SocketAddress)
+ * @see io.netty.bootstrap.AbstractBootstrap#initAndRegister
+ * Channel.newChannel的调用链:Bootstrap.connect -> Bootstrap.doResolveAndConnect -> AbstractBootstrap.initAndRegister
+ * 具体实现: NioSocketChannel -> AbstractNioByteChannel -> AbstractNioChannel -> AbstractChanne,其中在AbstractNioChannel会有参数设置
+ */
+
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;

@@ -2,6 +2,7 @@ package cn.edu.swpu.cins.nettydemo.chapter4.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+// Rpc配置文件
 @ConfigurationProperties(prefix = "rpc")
 public class RpcProperties {
 

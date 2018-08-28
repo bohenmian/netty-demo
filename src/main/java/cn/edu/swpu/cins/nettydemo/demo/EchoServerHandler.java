@@ -1,4 +1,4 @@
-package cn.edu.swpu.cins.nettydemo.chapter2;
+package cn.edu.swpu.cins.nettydemo.demo;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;

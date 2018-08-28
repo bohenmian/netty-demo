@@ -1,4 +1,4 @@
-package cn.edu.swpu.cins.nettydemo.chapter2;
+package cn.edu.swpu.cins.nettydemo.demo;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;

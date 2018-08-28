@@ -1,4 +1,4 @@
-package cn.edu.swpu.cins.nettydemo.chapter2;
+package cn.edu.swpu.cins.nettydemo.demo;
 
 /**
  * @see io.netty.bootstrap.AbstractBootstrap#channel(java.lang.Class)  channel的初始化

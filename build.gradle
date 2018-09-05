@@ -28,6 +28,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-configuration-processor')
 	compile('org.apache.zookeeper:zookeeper:3.5.4-beta')
+	compile('com.google.protobuf:protobuf-java:3.6.1')
 	compile('io.netty:netty-all')
 	compile('com.dyuproject.protostuff:protostuff-core:1.1.3')
 	compile('com.dyuproject.protostuff:protostuff-runtime:1.1.3')

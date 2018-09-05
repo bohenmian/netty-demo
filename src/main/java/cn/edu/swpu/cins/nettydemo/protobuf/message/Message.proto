@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "cn.edu.swpu.cins.nettydemo.protobuf.message";
+
+option java_outer_classname = "MessageInfo";
+
+message Message {
+
+    int32 id = 1;
+    string name = 2;
+    int32 age = 3;
+    int32 state = 4;
+
+}

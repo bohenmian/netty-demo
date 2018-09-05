@@ -23,7 +23,9 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        System.out.println("第" + count + "次, 客户端发送消息" + msg);
+        System.out.println(msg);
+
+//        System.out.println("第" + count + "次, 客户端发送消息," + msg.toString());
         count++;
     }
 
@@ -40,13 +42,14 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
         super.channelInactive(ctx);
     }
 
+    // 客户端每隔4s发送一次心跳信息
     @Override
     public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
         System.out.println("循环请求时间:" + new Date() + " ,次数" + fcount);
         if (evt instanceof IdleStateEvent) {
             IdleStateEvent event = (IdleStateEvent) evt;
-            if (IdleState.WRITER_IDLE.equals(event.state())) {
-                if (idle_count <= 3) {
+            if (IdleState.WRITER_IDLE.equals(event.state())) {  //如果写通道处于空闲状态
+                if (idle_count <= 3) {  //设置发送心跳信息的次数
                     idle_count++;
                     ctx.writeAndFlush(HEARTBEAT_SEQUENCE.duplicate());
                 } else {

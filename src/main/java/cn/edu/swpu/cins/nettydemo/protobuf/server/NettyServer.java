@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 
 public class NettyServer {
 
-    private static final int PORT = 8080;
+    private static final int PORT = 9876;
 
 
     public void start() throws InterruptedException {
@@ -37,6 +37,7 @@ public class NettyServer {
                             ch.pipeline()
                                     .addLast(new IdleStateHandler(5, 0, 0, TimeUnit.SECONDS))
                                     .addLast(new ProtobufVarint32FrameDecoder())
+                                    // 这里只能处理MessageInfo.Message这一种Protobuf数据结构类型
                                     .addLast(new ProtobufDecoder(MessageInfo.Message.getDefaultInstance()))
                                     .addLast(new ProtobufVarint32LengthFieldPrepender())
                                     .addLast(new ProtobufEncoder())
@@ -51,9 +52,5 @@ public class NettyServer {
             bossGroup.shutdownGracefully().sync();
             workGroup.shutdownGracefully().sync();
         }
-    }
-
-    public static void main(String[] args) throws InterruptedException {
-        new NettyServer().start();
     }
 }

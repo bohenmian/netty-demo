@@ -30,7 +30,7 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        System.out.printf("第%d次, 服务端接受的消息%s", count, msg);
+        System.out.println("第" + count + "次, 服务端接受的消息");
         try {
             if (msg instanceof MessageInfo.Message) {
                 MessageInfo.Message message = (MessageInfo.Message) msg;

@@ -1,17 +1,28 @@
 package cn.edu.swpu.cins.nettydemo.protobuf.client;
 
 import cn.edu.swpu.cins.nettydemo.protobuf.message.MessageInfo;
+import io.netty.bootstrap.Bootstrap;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.channel.EventLoop;
 import io.netty.handler.timeout.IdleState;
 import io.netty.handler.timeout.IdleStateEvent;
 import io.netty.util.ReferenceCountUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
+@Service("nettyClientHandler")
+@ChannelHandler.Sharable
 public class NettyClientHandler extends ChannelInboundHandlerAdapter {
 
+    // 循环次数
     private int count = 1;
+
+    @Autowired
+    private NettyClient nettyClient;
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
@@ -22,6 +33,9 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         System.out.println("关闭连接时间:" + new Date());
+        final EventLoop eventLoop = ctx.channel().eventLoop();
+        // 当channel不活跃的时候尝试重连
+        nettyClient.doConnect(new Bootstrap(), eventLoop);
         super.channelInactive(ctx);
     }
 
@@ -34,11 +48,11 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter {
         try {
             // 拿到protobuf类型的数据
             MessageInfo.Message message = (MessageInfo.Message) msg;
-
-            System.out.println("客户端接收到用户信息,编号:" + message.getId());
+            System.out.println("客户端接受到用户的信息,编号:" + message.getId() + " 姓名:" + message.getName()
+                    + " 年龄:" + message.getAge() + " 状态:" + message.getState());
             MessageInfo.Message.Builder messageState = MessageInfo.Message.newBuilder().setState(1);
             ctx.writeAndFlush(messageState);
-            System.out.println("成功发送给客户端");
+            System.out.println("成功发送给服务端");
         } catch (Exception e) {
             e.printStackTrace();
 

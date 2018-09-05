@@ -1,4 +1,4 @@
-package cn.edu.swpu.cins.nettydemo.chapter4.annotation;
+package cn.edu.swpu.cins.nettydemo.rpc.annotation;
 
 import org.springframework.stereotype.Component;
 

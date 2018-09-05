@@ -1,4 +1,4 @@
-package cn.edu.swpu.cins.nettydemo.chapter4.config;
+package cn.edu.swpu.cins.nettydemo.rpc.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

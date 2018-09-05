@@ -1,4 +1,4 @@
-package cn.edu.swpu.cins.nettydemo.chapter4.constant;
+package cn.edu.swpu.cins.nettydemo.rpc.constant;
 
 public interface RpcConstant {
 

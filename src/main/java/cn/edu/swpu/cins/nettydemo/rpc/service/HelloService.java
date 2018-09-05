@@ -1,4 +1,4 @@
-package cn.edu.swpu.cins.nettydemo.chapter4.service;
+package cn.edu.swpu.cins.nettydemo.rpc.service;
 
 public interface HelloService {
 
